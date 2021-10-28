@@ -1,0 +1,14 @@
+\frametitle{Experiment V2: Numerical methods towards the ansatz}
+
+\begin{center}
+\begin{code}
+(sage) cd Examples/RosslerAttractor
+(sage) run "RosslerGenLyapunovExponentExperiments2.py"
+\end{code}
+\textbf{Note:} It is \emph{very} time consuming to run the above script for a fine-grained mesh
+that gives the $N \rightarrow \infty$ behavior. These plots show the numerical results with the
+plot grid taken on a mesh with of granularity
+$(h, \Delta a) = (0.075, 0.075)$. \\
+\includegraphics[height=0.65\textheight]{../Images/RosslerAttractorExpt2-2021-10-28-031737.png}
+\end{center}
+
