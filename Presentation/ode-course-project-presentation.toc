@@ -2,15 +2,11 @@
 \beamer@sectionintoc {2}{Examples of solving ODEs in Python3}{3}{0}{2}
 \beamer@subsectionintoc {2}{1}{Setup: Model problem}{4}{0}{2}
 \beamer@subsectionintoc {2}{2}{Explicit forward Euler method}{5}{0}{2}
-\beamer@subsectionintoc {2}{3}{Runga-Kutta (RK4) method}{9}{0}{2}
-\beamer@subsectionintoc {2}{4}{Runga-Kutta (RK4) method}{10}{0}{2}
-\beamer@subsectionintoc {2}{5}{Linear multistep solver method (general model and ABF-3)}{13}{0}{2}
-\beamer@subsectionintoc {2}{6}{GEKKO library / Python package}{17}{0}{2}
-\beamer@subsectionintoc {2}{7}{Vector field plots from the midterm}{19}{0}{2}
-\beamer@sectionintoc {3}{Chaotic Attractors}{22}{0}{3}
-\beamer@sectionintoc {4}{The R\"ossler Attractor}{25}{0}{4}
-\beamer@subsectionintoc {4}{1}{Definitions}{26}{0}{4}
-\beamer@subsectionintoc {4}{2}{Numerical exploration of solutions}{27}{0}{4}
-\beamer@subsectionintoc {4}{3}{Modified experiment V1}{32}{0}{4}
-\beamer@subsectionintoc {4}{4}{Modified experiment V1}{39}{0}{4}
-\beamer@sectionintoc {5}{Concluding Remarks}{44}{0}{5}
+\beamer@subsectionintoc {2}{3}{Runge-Kutta (RK4) method}{9}{0}{2}
+\beamer@subsectionintoc {2}{4}{Runge-Kutta (RK4) method}{10}{0}{2}
+\beamer@subsectionintoc {2}{5}{Linear multistep solver method (general model and ABF-3)}{12}{0}{2}
+\beamer@sectionintoc {3}{Chaotic Attractors}{16}{0}{3}
+\beamer@sectionintoc {4}{The R\"ossler Attractor}{18}{0}{4}
+\beamer@subsectionintoc {4}{1}{Definitions}{18}{0}{4}
+\beamer@subsectionintoc {4}{2}{Numerical exploration of solutions}{19}{0}{4}
+\beamer@sectionintoc {5}{Concluding Remarks}{23}{0}{5}

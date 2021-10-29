@@ -31,7 +31,7 @@ def LagrangePolynomialInterpolation(ftyFunc, numStepsS, prevYPoints, t0, h, n):
         lastYPoint = ynpi
     return nextYPoints
 
-def AdamsBashforthABF3(ftyFunc, icPoint, solInterval, h, showPlot=True, drawStyle=None, legendLabel=None):
+def AdamsBashforthABF3(ftyFunc, icPoint, solInterval, h, showPlot=True, drawStyle=None, legendLabel=None, figureNum=1):
     f             = ftyFunc
     s             = 3
     (t0, y0)      = icPoint
@@ -48,7 +48,7 @@ def AdamsBashforthABF3(ftyFunc, icPoint, solInterval, h, showPlot=True, drawStyl
         yPoints += [ nextYn ]
     pltDrawStyle = GetDistinctDrawStyle(0) if drawStyle == None else drawStyle
     pltLegendLabel = '' if legendLabel == None else legendLabel
-    pltFig = plt.figure(1)
+    pltFig = plt.figure(figureNum)
     plt.plot(tPoints, yPoints, pltDrawStyle, label=pltLegendLabel, linewidth=1)
     plt.xlabel("Time (t) -- %d points equispaced at difference %1.2f" % (numGridPoints, h))
     plt.ylabel('Solution y(t)')
@@ -72,4 +72,22 @@ if __name__ == "__main__":
         axFig = AdamsBashforthABF3(ftyFunc, icPoint, solInterval, gridSpacingH, 
                                    showPlot=False, drawStyle=drawStyles[kidx], legendLabel=kthlbl)
     axFig.legend(loc='center right')
-    plt.show()
+    plt.show(block=False)
+
+    hStepParams  = [ 0.001, 0.005, 0.01, 0.05, 0.1 ] 
+    drawStyles   = [ GetDistinctDrawStyle(n) for n in range(0, len(hStepParams)) ]
+    solInterval  = (0.25, 0.85)
+    icPoint      = (0, 1.65)
+    for (hidx, hstep) in enumerate(hStepParams):
+        gridSpacingH = hstep
+        ftyFunc = lambda t, y: -15 * y
+        hthlbl = r'$\Delta t = %g$' % hstep
+        axFig = AdamsBashforthABF3(ftyFunc, icPoint, solInterval, gridSpacingH, 
+                                   showPlot=False, drawStyle=drawStyles[hidx], 
+                                  legendLabel=hthlbl, figureNum=2)
+    defaultGridSpacingH = 0.0025
+    tPoints = np.linspace(solInterval[0], solInterval[1], math.floor((solInterval[1] - solInterval[0]) / defaultGridSpacingH) + 1)
+    exactSolYPoints = [ float(np.exp(-15 * tval)) for tval in tPoints ]
+    plt.plot(tPoints, exactSolYPoints, 'b', label=r'$y(t) = e^{-15t}$', linewidth=2.5, color='limegreen', alpha=0.4)
+    axFig.legend(loc='center right')
+    plt.show(block=False)

@@ -198,7 +198,7 @@ def ComputeLambdaABC(xyzGrid, v0):
         yp, zp = simplify(yGrid[n]), simplify(zGrid[n])
         logArgFunc = simplify(rDtFunc.dot_product(v0))
         logArgFunc = simplify(logArgFunc.substitute(dict([ (XVAR, 0), (YVAR, yp), (ZVAR, zp) ])))
-        lambdaSum += log(logArgFunc) / float(nUpper)
+        lambdaSum += log(logArgFunc) / float(nUpper**2)
     lambdaSum = simplify(lambdaSum)
     return lambda ap, bp, cp: lambdaSum.substitute(dict([ (AVAR, ap), (BVAR, bp), (CVAR, cp) ]))
 
@@ -267,7 +267,7 @@ if __name__ == "__main__":
                 plotTitle = r'Density plot (for unprintable symbolic $v_0$)'
         plotTitle = plotTitle.replace('za', 'a').replace('zb', 'b').replace('zc', 'c')
         xLabel = RUNTIME_OPTIONS_KWARGS_DICT['yTransFuncLabel']
-        yLabel = r'$|\lambda(a, b, c)|$'
+        yLabel = r'$|\varpi(a, b, c)|$'
         ComputeABCDensityPlot(abcGrid, xyTransFuncs, showPlot=False, axPlt=ax, 
                               plotTitle=plotTitle, xyLabels=(xLabel, yLabel), bins=useLogScale)
     plt.savefig(stampOutputFilePathFunc(RUNTIME_OPTIONS_KWARGS_DICT['plotOutPath']))

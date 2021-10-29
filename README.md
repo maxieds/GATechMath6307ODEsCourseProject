@@ -21,6 +21,9 @@ $ brew install python@3.9 ipython
 $ brew install sage
 $ python3.9 -m pip install numpy scipy sympy matplotlib notebook jupyterlab 
 $ python3.9 -m pip install gekko ode-toolbox ode-explorer
+$ sage
+(sage) pip install pandas
+(sage) exit
 ```
 
 ### Configuring the Python path in the local Bash shell 

@@ -1,0 +1,11 @@
+\frametitle{Experiment V2: Numerical methods towards the ansatz}
+
+\begin{center}
+\begin{code}
+(sage) cd Examples/RosslerAttractor
+(sage) run "RosslerExperiment2.py"
+\end{code}
+     (TODO)
+%\includegraphics[height=0.85\textheight]{../Images/RosslerAttractorExpt2-2021-10-28-031737.png}
+\end{center}
+

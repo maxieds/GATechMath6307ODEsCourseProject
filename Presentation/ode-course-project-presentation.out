@@ -2,15 +2,11 @@
 \BOOKMARK [2][]{Outline0.2}{Examples of solving ODEs in Python3}{}% 2
 \BOOKMARK [3][]{Outline0.2.1.4}{Setup: Model problem}{Outline0.2}% 3
 \BOOKMARK [3][]{Outline0.2.2.5}{Explicit forward Euler method}{Outline0.2}% 4
-\BOOKMARK [3][]{Outline0.2.3.9}{Runga-Kutta \(RK4\) method}{Outline0.2}% 5
-\BOOKMARK [3][]{Outline0.2.4.10}{Runga-Kutta \(RK4\) method}{Outline0.2}% 6
-\BOOKMARK [3][]{Outline0.2.5.13}{Linear multistep solver method \(general model and ABF-3\)}{Outline0.2}% 7
-\BOOKMARK [3][]{Outline0.2.6.17}{GEKKO library / Python package}{Outline0.2}% 8
-\BOOKMARK [3][]{Outline0.2.7.19}{Vector field plots from the midterm}{Outline0.2}% 9
-\BOOKMARK [2][]{Outline0.3}{Chaotic Attractors}{}% 10
-\BOOKMARK [2][]{Outline0.4}{The R\366ssler Attractor}{}% 11
-\BOOKMARK [3][]{Outline0.4.1.26}{Definitions}{Outline0.4}% 12
-\BOOKMARK [3][]{Outline0.4.2.27}{Numerical exploration of solutions}{Outline0.4}% 13
-\BOOKMARK [3][]{Outline0.4.3.32}{Modified experiment V1}{Outline0.4}% 14
-\BOOKMARK [3][]{Outline0.4.4.39}{Modified experiment V1}{Outline0.4}% 15
-\BOOKMARK [2][]{Outline0.5}{Concluding Remarks}{}% 16
+\BOOKMARK [3][]{Outline0.2.3.9}{Runge-Kutta \(RK4\) method}{Outline0.2}% 5
+\BOOKMARK [3][]{Outline0.2.4.10}{Runge-Kutta \(RK4\) method}{Outline0.2}% 6
+\BOOKMARK [3][]{Outline0.2.5.12}{Linear multistep solver method \(general model and ABF-3\)}{Outline0.2}% 7
+\BOOKMARK [2][]{Outline0.3}{Chaotic Attractors}{}% 8
+\BOOKMARK [2][]{Outline0.4}{The R\366ssler Attractor}{}% 9
+\BOOKMARK [3][]{Outline0.4.1.18}{Definitions}{Outline0.4}% 10
+\BOOKMARK [3][]{Outline0.4.2.19}{Numerical exploration of solutions}{Outline0.4}% 11
+\BOOKMARK [2][]{Outline0.5}{Concluding Remarks}{}% 12
