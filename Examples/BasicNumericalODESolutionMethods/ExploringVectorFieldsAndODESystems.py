@@ -10,7 +10,7 @@ from sympy import solve, Function
 from scipy.integrate import odeint
 import math
 from PythonODEBaseLibrary import * 
-from MatplotlibBase import *
+#from MatplotlibBase import *
 
 def ComputeEquilibriumPoints(FxyFunc):
     Fxy = lambda x, y: list(FxyFunc(x, y))
@@ -49,13 +49,14 @@ def SolveODE2DSystemWithVectorField(FxyFunc, icPoint, solInterval, h, showPlot=T
     (solA, solB) = solInterval
     numGridPoints = math.floor(float((solB - solA) / h))
     timeSpecT = np.linspace(solA, solB, numGridPoints + 1)
+    timeSpecT2 = np.linspace(max(0.5, solA), solB, numGridPoints + 1)
     odeIntSol = odeint(Fxy, [ x0, y0 ], timeSpecT)
     xtSolPoints = odeIntSol[:, 0] 
     ytSolPoints = odeIntSol[:, 1]
     axFig = plt.figure(1) 
     plt.xlabel(r'Time (t)')
-    plt.plot(timeSpecT, xtSolPoints, GetDistinctDrawStyle(2), label=r'$x(t)$')
-    plt.plot(timeSpecT, ytSolPoints, GetDistinctDrawStyle(6), label=r'$y(t)$')
+    plt.plot(timeSpecT, xtSolPoints, 'b.', label=r'$x(t)$')
+    plt.plot(timeSpecT, ytSolPoints, 'r--', label=r'$y(t)$')
     plt.title(r'Solutions $(x(t), y(t))$ to the ODE system $(x^{\prime}, y^{\prime}) = F(x, y)$')
     if showPlot:
         plt.draw() #show()
