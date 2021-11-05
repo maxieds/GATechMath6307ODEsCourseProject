@@ -5,8 +5,8 @@
 \beamer@subsectionintoc {2}{3}{Runge-Kutta (RK4) method}{9}{0}{2}
 \beamer@subsectionintoc {2}{4}{Runge-Kutta (RK4) method}{10}{0}{2}
 \beamer@subsectionintoc {2}{5}{Linear multistep solver method (general model and ABF-3)}{12}{0}{2}
-\beamer@sectionintoc {3}{Chaotic Attractors}{16}{0}{3}
-\beamer@sectionintoc {4}{The R\"ossler Attractor}{18}{0}{4}
-\beamer@subsectionintoc {4}{1}{Definitions}{18}{0}{4}
-\beamer@subsectionintoc {4}{2}{Numerical exploration of solutions}{19}{0}{4}
-\beamer@sectionintoc {5}{Concluding Remarks}{23}{0}{5}
+\beamer@sectionintoc {3}{Chaotic Attractors}{15}{0}{3}
+\beamer@sectionintoc {4}{The R\"ossler Attractor}{17}{0}{4}
+\beamer@subsectionintoc {4}{1}{Definitions}{17}{0}{4}
+\beamer@subsectionintoc {4}{2}{Numerical exploration of solutions}{18}{0}{4}
+\beamer@sectionintoc {5}{Concluding Remarks}{22}{0}{5}

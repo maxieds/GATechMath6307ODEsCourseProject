@@ -31,7 +31,7 @@ def LagrangePolynomialInterpolation(ftyFunc, numStepsS, prevYPoints, t0, h, n):
         lastYPoint = ynpi
     return nextYPoints
 
-def AdamsBashforthABF3(ftyFunc, icPoint, solInterval, h, showPlot=True, drawStyle=None, legendLabel=None, figureNum=1):
+def AdamsBashforthABF3(ftyFunc, icPoint, solInterval, h, plotInterval=None, showPlot=True, drawStyle=None, legendLabel=None, figureNum=1):
     f             = ftyFunc
     s             = 3
     (t0, y0)      = icPoint
@@ -46,13 +46,16 @@ def AdamsBashforthABF3(ftyFunc, icPoint, solInterval, h, showPlot=True, drawStyl
         fn2, fn1, fn = f(tn2, yn2), f(tn1, yn1), f(tn, yn)
         nextYn = yn2 + h * (23.0 / 12.0 * fn2 - 4.0 / 3.0 * fn1 + 5.0 / 12.0 * fn)
         yPoints += [ nextYn ]
+    if plotInterval != None:
+        yPoints = [ y for (tidx, y) in enumerate(yPoints) if tPoints[tidx] >= plotInterval[0] and tPoints[tidx] <= plotInterval[1] ]
+        tPoints = [ t for t in tPoints if t >= plotInterval[0] and t <= plotInterval[1] ]
     pltDrawStyle = GetDistinctDrawStyle(0) if drawStyle == None else drawStyle
     pltLegendLabel = '' if legendLabel == None else legendLabel
     pltFig = plt.figure(figureNum)
     plt.plot(tPoints, yPoints, pltDrawStyle, label=pltLegendLabel, linewidth=1)
     plt.xlabel("Time (t) -- %d points equispaced at difference %1.2f" % (numGridPoints, h))
     plt.ylabel('Solution y(t)')
-    plt.title(r'Explicit forward Euler method to solve the ODE $y^{\prime}(t) = f(t, y(t))$')
+    plt.title(r'ABF-3 method to solve the ODE $y^{\prime}(t) = f(t, y(t))$')
     if showPlot:
         plt.draw()
     return pltFig
@@ -64,7 +67,7 @@ if __name__ == "__main__":
     kPowParams   = [ 1.0, 1.5, 2.5, 4.0, 6.2 ]
     drawStyles   = [ GetDistinctDrawStyle(n) for n in range(0, len(kPowParams)) ]
     gridSpacingH = 0.0025
-    solInterval  = (0, 8)
+    solInterval  = (0, 2)
     icPoint      = (0, 1)
     for (kidx, kpow) in enumerate(kPowParams):
         ftyFunc = yPowerODEFunc(kpow)
@@ -76,17 +79,19 @@ if __name__ == "__main__":
 
     hStepParams  = [ 0.001, 0.005, 0.01, 0.05, 0.1 ] 
     drawStyles   = [ GetDistinctDrawStyle(n) for n in range(0, len(hStepParams)) ]
-    solInterval  = (0.25, 0.85)
-    icPoint      = (0, 1.65)
+    solInterval  = (0, 2)
+    plotInterval = (0, 0.5)
+    icPoint      = (0, 1)
     for (hidx, hstep) in enumerate(hStepParams):
         gridSpacingH = hstep
         ftyFunc = lambda t, y: -15 * y
         hthlbl = r'$\Delta t = %g$' % hstep
         axFig = AdamsBashforthABF3(ftyFunc, icPoint, solInterval, gridSpacingH, 
+                                   plotInterval=plotInterval, 
                                    showPlot=False, drawStyle=drawStyles[hidx], 
-                                  legendLabel=hthlbl, figureNum=2)
+                                   legendLabel=hthlbl, figureNum=2)
     defaultGridSpacingH = 0.0025
-    tPoints = np.linspace(solInterval[0], solInterval[1], math.floor((solInterval[1] - solInterval[0]) / defaultGridSpacingH) + 1)
+    tPoints = np.linspace(plotInterval[0], plotInterval[1], math.floor((plotInterval[1] - plotInterval[0]) / defaultGridSpacingH) + 1)
     exactSolYPoints = [ float(np.exp(-15 * tval)) for tval in tPoints ]
     plt.plot(tPoints, exactSolYPoints, 'b', label=r'$y(t) = e^{-15t}$', linewidth=2.5, color='limegreen', alpha=0.4)
     axFig.legend(loc='center right')

@@ -281,7 +281,7 @@ School of Mathematics \\ % Your institution for the title page
       generating numerical solutions to this ODE provided that we can 
       evaluate $f$ clearly 
 \item $\operatorname{LocalTruncationError} = O(h^2)$ (LTE at each step) 
-\item $f$ is Lipschitz $\operatorname{GlobalTruncationError} = O(h)$ 
+\item if $f$ is Lipschitz, then $\operatorname{GlobalTruncationError} = O(h)$ 
        (depends on the function, or minimal Lipschitz constant, and the upper bound on the 
        time interval exponentially) 
 \item $y_{n+1} = y_n + f(t_n, y_n) \left(t_{n+1} - t_n\right) = y_n + h \cdot f(t_n, y_n)$ \\ 
@@ -306,7 +306,7 @@ School of Mathematics \\ % Your institution for the title page
 \item Modifications can be given, including 
       taking $y^{\prime}\left(t + \frac{h}{2}\right) \approx \frac{y(t+h)-y(t)}{h}$ in place of ($\ast$) above, 
       leading to the \emph{midpoint method} 
-\item Implicit backwards Euler forms another variant 
+\item Implicit backwards Euler forms another variant where we would take the RHS endpoint in the Riemann sum above
 
 \end{itemize} 
 
@@ -364,7 +364,7 @@ def ExplicitForwardEuler(ftyFunc, icPoint, solInterval, h):
 \item $y_{n+1} = y_n + \frac{h}{6}\left(k_1 + 2k_2 + 2k_3 + k_4\right)$ (recursion to evaluate) 
 \item Taking the weighted average at four slopes leads to more weight given to slopes closer to the midpoint 
       of each subinterval 
-\item $\operatorname{LocalTruncationError} = O(h^5)$ (LTE) and $\operatorname{AccumulatedTruncationError} = O(h^4)$ 
+\item $\operatorname{LocalTruncationError} = O(h^5)$ and $\operatorname{GlobalTruncationError} = O(h^4)$ 
 \item If $f$ does not depend on $y$, the RK4 is the same as \emph{Simpson's rule} 
 
 \end{itemize} 
@@ -414,38 +414,22 @@ def ExplicitForwardEuler(ftyFunc, icPoint, solInterval, h):
 \subsection{Linear multistep solver method (general model and ABF-3)}
 
 \begin{frame}
-\frametitle{Overview of general multistep methods}
+\frametitle{Step solver method -- Adams-Bashforth (ABF-$s$)}
 
+\small 
 \begin{itemize} 
 
-\item General multistep method with $s$ steps: 
-      $$y_{n+s} + \sum\limits_{j=0}^{s-1} a_j y_{n+j} = \sum\limits_{m=0}^s hb_m f(t_{n+m}, y_{n+m})$$
-\item Polynomial interpolation: 
-      $$p(t_{n+i}) := f(t_{n+i}, y_{n+i}), \text{ for } i \in \{0,1,\ldots,s-1\}$$
+\item The multistep ABF-$s$ ($s$-step) case: $a_{s-1}=-1$; $a_{s-2}=\cdots=a_0=0$
 \item Lagrange's exact polynomial interpolation formula under this requirement: 
       $$p(t) = \sum\limits_{0 \leq j < s} \frac{(-1)^{s-j-1} f(t_{n+j}, y_{n+j})}{j! (s-j-1)! h^{s-1}} \times 
        \prod\limits_{\substack{0 \leq i < s \\ i \neq j}} (t-t_{n+i})$$ 
 \item Approximations to initial conditions and foundation for building the numerical solutions: 
       $$y_{n} = y_{n-1} + \int\limits_{t_{n-1}}^{t_{n}} p(t) dt, \text{ for } n \in \{1, 2, \ldots, s-1\}$$ 
-
-\end{itemize} 
-
-\end{frame}
-
-\begin{frame}
-\frametitle{Step solver method -- Adams-Bashforth (ABF-$s$)}
-
-\begin{itemize} 
-
-\item The multistep ABF-$s$ ($s$-step) case: $a_{s-1}=-1$; $a_{s-2}=\cdots=a_0=0$
-\item The multistep ABF-$s$ ($s$-step) case: 
-      Substitute $f(t_{n+j}, y_{n+j}) \mapsto p(t_{n+j})$ in the Lagrange interpolation formula from above 
-\item The ABF-$s$ method coefficient multipliers yield: 
+\item With $f(t_{n+j}, y_{n+j}) \mapsto p(t_{n+j})$, the ABF-$s$ method coefficient multipliers are: 
       $$b_{s-j-1} = \frac{(-1)^j}{j!(s-j-1)!} \times \int\limits_0^1 \prod\limits_{\substack{0 \leq i < s \\ i \neq j}} (u+i) du, 
        \text{ for } j \in \{0,1,\ldots,s-1\}$$ 
 \item Recursion in the ABF-3 method: 
       $$y_{n+3} = y_{n+2} + h\left(\frac{23}{12}f(t_{n+2},y_{n+2}) - \frac{4}{3} f(t_{n+1},y_{n+1}) + \frac{5}{12} f(t_n, y_n)\right)$$ 
-\item \textbf{Note:} Single step ABF-1 is the forward Euler method 
 
 \end{itemize} 
 

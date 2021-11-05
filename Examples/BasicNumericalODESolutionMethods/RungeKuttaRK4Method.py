@@ -8,7 +8,7 @@ import math
 from PythonODEBaseLibrary import * 
 from MatplotlibBase import *
 
-def RungeKuttaRK4(ftyFunc, icPoint, solInterval, h, showPlot=True, drawStyle=None, legendLabel=None, figureNum=1):
+def RungeKuttaRK4(ftyFunc, icPoint, solInterval, h, plotInterval=None, showPlot=True, drawStyle=None, legendLabel=None, figureNum=1):
     f = ftyFunc
     (t0, y0) = icPoint
     (solA, solB) = solInterval
@@ -25,6 +25,9 @@ def RungeKuttaRK4(ftyFunc, icPoint, solInterval, h, showPlot=True, drawStyle=Non
         nextYn = curYn + h / 6.0 * (k1 + 2 * k2 + 2 * k3 + k4)
         yPoints += [ nextYn ]
         curYn = nextYn
+    if plotInterval != None:
+        yPoints = [ y for (tidx, y) in enumerate(yPoints) if tPoints[tidx] >= plotInterval[0] and tPoints[tidx] <= plotInterval[1] ]
+        tPoints = [ t for t in tPoints if t >= plotInterval[0] and t <= plotInterval[1] ]
     pltDrawStyle = GetDistinctDrawStyle(0) if drawStyle == None else drawStyle
     pltLegendLabel = '' if legendLabel == None else legendLabel
     pltFig = plt.figure(figureNum)
@@ -55,17 +58,19 @@ if __name__ == "__main__":
 
     hStepParams  = [ 0.00001, 0.0001, 0.001, 0.005, 0.01, 0.05, 0.1 ] 
     drawStyles   = [ GetDistinctDrawStyle(n) for n in range(0, len(hStepParams)) ]
-    solInterval  = (0.25, 0.85)
-    icPoint      = (0, 1.65)
+    solInterval  = (0, 8)
+    plotInterval = (0, 0.5)
+    icPoint      = (0, 1)
     for (hidx, hstep) in enumerate(hStepParams):
         gridSpacingH = hstep
         ftyFunc = lambda t, y: -15 * y
         hthlbl = r'$\Delta t = %g$' % hstep
         axFig = RungeKuttaRK4(ftyFunc, icPoint, solInterval, gridSpacingH, 
+                              plotInterval=plotInterval, 
                               showPlot=False, drawStyle=drawStyles[hidx], 
                               legendLabel=hthlbl, figureNum=2)
     defaultGridSpacingH = 0.0025
-    tPoints = np.linspace(solInterval[0], solInterval[1], math.floor((solInterval[1] - solInterval[0]) / defaultGridSpacingH) + 1)
+    tPoints = np.linspace(plotInterval[0], plotInterval[1], math.floor((plotInterval[1] - plotInterval[0]) / defaultGridSpacingH) + 1)
     exactSolYPoints = [ float(np.exp(-15 * tval)) for tval in tPoints ]
     plt.plot(tPoints, exactSolYPoints, 'b', label=r'$y(t) = e^{-15t}$', linewidth=2.5, color='limegreen', alpha=0.4)
     axFig.legend(loc='center right')
