@@ -9,4 +9,4 @@
 \beamer@sectionintoc {4}{The R\"ossler Attractor}{17}{0}{4}
 \beamer@subsectionintoc {4}{1}{Definitions}{17}{0}{4}
 \beamer@subsectionintoc {4}{2}{Numerical exploration of solutions}{18}{0}{4}
-\beamer@sectionintoc {5}{Concluding Remarks}{22}{0}{5}
+\beamer@sectionintoc {5}{Concluding Remarks}{20}{0}{5}

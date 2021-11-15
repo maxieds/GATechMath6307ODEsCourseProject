@@ -1,8 +1,7 @@
-\frametitle{Exploring the classical parameter solution (3D plots)}
+\frametitle{Exploring the classical parameter solution}
 
-The solution projected into the $XY$-plane (by setting $Z=0$) with the ``classic''
-parameters $(a, b, c) = (0.2, 0.2, 5.7)$. \\
 \begin{center}
-\includegraphics[width=0.95\textwidth]{../Images/RosslerAttractorSummary-TypeXY-Plot3D-A0-200B0-200C5-700-2021-10-27-044740.png}
+\vskip -0.5cm
+\includegraphics[height=0.92\textheight]{../Images/RosslerAttractorSage3DSolvers-2021-10-29-081641.png}
 \end{center}
 
